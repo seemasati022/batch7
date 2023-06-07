@@ -244,7 +244,7 @@ public class EmployeeController {
     
     @RequestMapping(value = "factoryDesign/{type}")
     public ResponseEntity<String> factoryDesignPattern(@PathVariable String type){
-        FactoryDesignPattern fdp = new FactoryDesignPattern(type);
+        new FactoryDesignPattern(type)
         return null;
     }
 

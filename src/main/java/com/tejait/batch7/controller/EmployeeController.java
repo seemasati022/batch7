@@ -1,6 +1,7 @@
 package com.tejait.batch7.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.tejait.batch7.FactoryDesign.FactoryDesignPattern;
 import com.tejait.batch7.model.Employee;
 import com.tejait.batch7.service.EmployeeService;
 import com.tejait.batch7.utils.PdfGenerator;
@@ -239,6 +240,12 @@ public class EmployeeController {
             e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+    
+    @RequestMapping(value = "factoryDesign/{type}")
+    public ResponseEntity<String> factoryDesignPattern(@PathVariable String type){
+        FactoryDesignPattern fdp = new FactoryDesignPattern(type);
+        return null;
     }
 
 

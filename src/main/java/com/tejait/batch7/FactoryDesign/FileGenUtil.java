@@ -4,7 +4,6 @@ public class FileGenUtil {
 
     public static FileGen fileObjGen(String fileType){     // this method return FileGen(I) based on typeType which we get from FE
                                                           //and cretes object for that fileType and adds to list and then returns
-
      FileGen fileGen = null;
      switch (fileType){
          case "pdf":
@@ -22,7 +21,7 @@ public class FileGenUtil {
          default:
              break;
      }
-        return fileGen;
+     return fileGen;
     }
 
 }

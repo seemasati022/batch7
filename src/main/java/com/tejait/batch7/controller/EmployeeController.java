@@ -242,10 +242,12 @@ public class EmployeeController {
         }
     }
     
-    @RequestMapping(value = "factoryDesign/{type}")
-    public ResponseEntity<String> factoryDesignPattern(@PathVariable String type){
-        new FactoryDesignPattern(type)
-        return null;
+    @RequestMapping(value = "factoryDesign/{type}")         //"pdf,txt,docx,xlsx"
+    public ResponseEntity<String> factoryDesignPattern(@PathVariable String type) throws IOException {
+        String folderLocation = "/Users/seemanthinisathi/Files/downloads/";
+        FactoryDesignPattern  designPattern = new FactoryDesignPattern(type);
+        designPattern.executeFileOBjects(employeeService.getAllEmployee(),folderLocation);
+        return new ResponseEntity<>("successfully downloaded",HttpStatus.OK);
     }
 
 

@@ -4,7 +4,6 @@ import com.tejait.batch7.model.Employee;
 import com.tejait.batch7.repository.EmployeeRepository;
 import com.tejait.batch7.service.EmployeeService;
 import com.tejait.batch7.utils.SearchFilters;
-import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -12,15 +11,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 
-import java.io.IOException;
-import java.net.URISyntaxException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
@@ -157,7 +150,10 @@ public class EmployeeServiceImpl implements EmployeeService {
         return list;
     }
 
-
+    @Override
+    public Boolean getByID(Integer id){
+        return empRepo.existsById(id);
+    }
 
 
 }

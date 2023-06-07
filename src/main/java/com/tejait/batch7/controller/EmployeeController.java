@@ -2,6 +2,7 @@ package com.tejait.batch7.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tejait.batch7.FactoryDesign.FactoryDesignPattern;
+import com.tejait.batch7.exceptions.UserNotAvailableException;
 import com.tejait.batch7.model.Employee;
 import com.tejait.batch7.service.EmployeeService;
 import com.tejait.batch7.utils.PdfGenerator;
@@ -29,6 +30,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.zip.DataFormatException;
 
 
 
@@ -242,7 +244,7 @@ public class EmployeeController {
         }
     }
     
-    @RequestMapping(value = "factoryDesign/{type}")         //"pdf,txt,docx,xlsx"
+    @RequestMapping(value = "factoryDesign/{type}", method = RequestMethod.GET)         //"pdf,txt,docx,xlsx"
     public ResponseEntity<String> factoryDesignPattern(@PathVariable String type) throws IOException {
         String folderLocation = "/Users/seemanthinisathi/Files/downloads/";
         FactoryDesignPattern  designPattern = new FactoryDesignPattern(type);
@@ -250,6 +252,15 @@ public class EmployeeController {
         return new ResponseEntity<>("successfully downloaded",HttpStatus.OK);
     }
 
-
+    @GetMapping("getById/{id}")
+    public ResponseEntity<Boolean> getByIdIfExists(@PathVariable Integer id) throws DataFormatException {
+        Boolean byID = employeeService.getByID(id);
+        if (byID == false){
+            //throw new IllegalArgumentException();
+           // throw new DataFormatException();          //handled by parent Exception
+            throw new UserNotAvailableException();
+        }
+        return new ResponseEntity<>(byID,HttpStatus.OK);
+    }
 
 }

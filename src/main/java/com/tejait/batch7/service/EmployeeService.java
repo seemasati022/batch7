@@ -47,4 +47,5 @@ public interface EmployeeService {
     List<Employee> searchFilter(String filterType, String empcode);
 
 
+    Boolean getByID(Integer id);
 }

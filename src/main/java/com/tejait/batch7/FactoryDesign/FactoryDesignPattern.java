@@ -1,5 +1,8 @@
 package com.tejait.batch7.FactoryDesign;
 
+import com.tejait.batch7.model.Employee;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,12 +24,10 @@ public class FactoryDesignPattern {
     * */
 
    // private String type;
+   List<FileGen> fileGenList = new ArrayList<>();
 
     public FactoryDesignPattern(String type) {          //{"pdf,txt,docx,xlsx"}
         String[] format = type.split(",");        //{"pdf","txt"."docx","xlsx"}
-
-        List<FileGen> fileGenList = new ArrayList<>();
-
         for (String fileObj :format) {
             // pdf
             // txt
@@ -36,10 +37,16 @@ public class FactoryDesignPattern {
             // takes in the type we get from FE(for now,lets say 1st pdf) and returns the PdfFile() obj of that and
             // the returned obj is now added to list and again
             // iteration is started for docx until how many for there in format
-            FileGen fg = FileGenUtil.fileObjGen(type);
+            FileGen fg = FileGenUtil.fileObjGen(fileObj);
             fileGenList.add(fg);
         }
 
+    }
+
+    public void executeFileOBjects(List<Employee> employeeList, String folder) throws IOException {
+        for (FileGen Ifile:fileGenList) {               //all objects in the list will call its respective fileobj and return
+            Ifile.genFile(employeeList, folder);
+        }
     }
 
 }

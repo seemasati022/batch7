@@ -1,6 +1,8 @@
 package com.tejait.batch7.service.seriveImpl;
 
+import com.tejait.batch7.model.ApiResponse;
 import com.tejait.batch7.model.Employee;
+import com.tejait.batch7.model.ResponseBuilder;
 import com.tejait.batch7.repository.EmployeeRepository;
 import com.tejait.batch7.service.EmployeeService;
 import com.tejait.batch7.utils.SearchFilters;
@@ -8,7 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RequestParam;
 
 
 import java.util.ArrayList;
@@ -20,6 +26,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Autowired
     EmployeeRepository empRepo;
+
+    @Autowired
+    ResponseBuilder responseBuilder;
 
     public Employee saveEmployee(Employee emp){
 
@@ -155,5 +164,10 @@ public class EmployeeServiceImpl implements EmployeeService {
         return empRepo.existsById(id);
     }
 
+    @Override
+    public ResponseEntity<ApiResponse> getAllEmpsApiResp(HttpHeaders headers){
+        List<Employee> listData = empRepo.findAll();
+        return responseBuilder.buildResponse(headers,200,"fetching all emps data using apiResponse",listData);
+    }
 
 }

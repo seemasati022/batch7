@@ -1,7 +1,10 @@
 package com.tejait.batch7.service;
 
+import com.tejait.batch7.model.ApiResponse;
 import com.tejait.batch7.model.Employee;
 import org.springframework.data.domain.Page;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 
 
 import java.util.List;
@@ -48,4 +51,6 @@ public interface EmployeeService {
 
 
     Boolean getByID(Integer id);
+
+    ResponseEntity<ApiResponse> getAllEmpsApiResp(HttpHeaders headers);
 }

@@ -1,19 +1,22 @@
 package com.tejait.batch7;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
-//@ComponentScan({"com.tejait.batch7"})
-//@EntityScan("com.tejait.batch7")
-//@EnableJpaRepositories("com.tejait.batch7")
 public class Batch7Application {
 
-	public static void main(String[] args) {
-		SpringApplication.run(Batch7Application.class, args);
-	}
+    public static final Logger logger = LogManager.getLogger(Batch7Application.class);
+
+    public static void main(String[] args) {
+        SpringApplication.run(Batch7Application.class, args);
+        logger.debug("debug level");
+        logger.info("info level");
+        logger.warn("warn level");
+        logger.error("error level");
+        logger.fatal("fatal level");
+    }
 
 }

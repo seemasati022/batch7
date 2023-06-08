@@ -3,6 +3,7 @@ package com.tejait.batch7.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tejait.batch7.FactoryDesign.FactoryDesignPattern;
 import com.tejait.batch7.exceptions.UserNotAvailableException;
+import com.tejait.batch7.model.ApiResponse;
 import com.tejait.batch7.model.Employee;
 import com.tejait.batch7.service.EmployeeService;
 import com.tejait.batch7.utils.PdfGenerator;
@@ -261,6 +262,12 @@ public class EmployeeController {
             throw new UserNotAvailableException();
         }
         return new ResponseEntity<>(byID,HttpStatus.OK);
+    }
+
+
+    @GetMapping("builderDesign")
+    public ResponseEntity<ApiResponse> getEmpsByApiResp(@RequestHeader HttpHeaders headers){
+        return employeeService.getAllEmpsApiResp(headers);
     }
 
 }

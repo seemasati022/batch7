@@ -4,6 +4,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @SpringBootApplication
 public class Batch7Application {
@@ -17,6 +20,13 @@ public class Batch7Application {
         logger.warn("warn level");
         logger.error("error level");
         logger.fatal("fatal level");
+        logger.fatal("logger1 level");
+        logger.fatal("logger2 level");
+
     }
+
+    @Bean
+    public PasswordEncoder passwordEncoder() { return
+            NoOpPasswordEncoder.getInstance(); }
 
 }

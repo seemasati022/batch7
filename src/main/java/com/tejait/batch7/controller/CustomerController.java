@@ -13,13 +13,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class CustomerController {
 
     @Autowired
-    @Qualifier("business")
+    @Qualifier("retail")
     private CustomerService customerService;
 
     @GetMapping("/cust")
     public String getCust(){
         return customerService.getCustomerType();
     }
-
 
 }

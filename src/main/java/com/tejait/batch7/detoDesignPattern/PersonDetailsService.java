@@ -17,7 +17,7 @@ public class PersonDetailsService {
 
     public List<PersonCardDetailsDTO> getAllPersonDto(PersonDetails details){
         List<PersonDetails> personEntityList = repository.findAll();            //this returns 3 entity objects
-        // passing the entities to stream-> map. in map, calling converttodto method and returns dto objects and collecting them to list
+    // passing the entities to stream-> map. in map, calling converttodto method and returns dto objects and collecting them to list
         return personEntityList.stream().map(PersonDetailsService::converTEntityToDto).collect(Collectors.toList());
     }
 

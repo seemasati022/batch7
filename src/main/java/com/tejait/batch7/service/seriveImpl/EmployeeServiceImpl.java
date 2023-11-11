@@ -12,14 +12,17 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
@@ -120,6 +123,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     public Page<Employee> getPagination(Integer pageNo, Integer recSize) {
         Pageable pageable = PageRequest.of(pageNo, recSize);
         return empRepo.findAll(pageable);              //thid findAll() expects pagable obj which contains pagerequest.of(page,size)
+        //now page is created and rec count is fixed, so when it enters db, it fetches only given number of records to the page.
     }
 
     @Override
@@ -166,7 +170,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public ResponseEntity<ApiResponse> getAllEmpsApiResp(HttpHeaders headers){
-        List<Employee> listData = empRepo.findAll();
+        List<Employee> listData = empRepo.findAll();//.stream().collect(Collectors.toCollection(HashSet::new));
         return responseBuilder.buildResponse(headers,200,"fetching all emps data using apiResponse",listData);
     }
 

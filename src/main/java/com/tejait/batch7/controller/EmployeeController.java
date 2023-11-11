@@ -46,6 +46,7 @@ import java.util.zip.DataFormatException;
 
 @RestController
 @RequestMapping("employee")
+@CrossOrigin
 public class EmployeeController {
 
     @Autowired
@@ -264,10 +265,13 @@ public class EmployeeController {
         return new ResponseEntity<>(byID,HttpStatus.OK);
     }
 
-
+    {
+        String testing = "testing";
+    }
     @GetMapping("builderDesign")
     public ResponseEntity<ApiResponse> getEmpsByApiResp(@RequestHeader HttpHeaders headers){
         return employeeService.getAllEmpsApiResp(headers);
     }
 
 }
+//testing git

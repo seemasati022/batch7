@@ -12,7 +12,7 @@ public class FactoryDesignPattern {
     * FactoryDesignPattern  ->
     * from FE -> we get 1//2/many as a string type
     * we need to convert this string to string[]
-    * based on the string[] vals, we need to create objs
+    * based on the string[] vals, we need to create objects
     *
     *
     *

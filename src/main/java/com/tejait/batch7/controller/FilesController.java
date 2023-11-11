@@ -16,6 +16,7 @@ import java.nio.file.Paths;
 
 @RestController
 @RequestMapping("files")
+@CrossOrigin
 public class FilesController {
 
     @Autowired
